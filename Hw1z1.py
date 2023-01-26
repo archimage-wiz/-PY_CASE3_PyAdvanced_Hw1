@@ -4,6 +4,8 @@ from application.db.people import get_employees
 import datetime as dt
 from dirty_main import *
 import text_to_image
+from PIL import Image
+import random
 
 if __name__ == "__main__":
     i_remember_time = dt.datetime.now()
@@ -20,5 +22,15 @@ if __name__ == "__main__":
         text = f.read()
     img = text_to_image.encode(text, "image.png")
     print(img, text_to_image.decode("image.png"))
+    img = Image.new('RGBA', (64, 64), 'white')
+    for x in range(64):
+        for y in range(64):
+            c = random.randint(0, 255)
+            img.putpixel((x, y), (x*4, y*4, c))
+    img.save("image2.png")
+    img.show()
+
+
+
 
 
